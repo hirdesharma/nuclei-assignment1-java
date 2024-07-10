@@ -1,38 +1,48 @@
 package assignment1;
 
+import assignment1.utils.ArgumentParser;
+import assignment1.validators.ItemValidator;
+
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class ItemManager {
+
+//   asking user to enter details
+    private static final String PROMPT_DETAILS = """
+
+        Please provide item details in the format:\
+
+         -name <item name>
+         -price <item price>
+         -quantity <item quantity>
+         -type <item type>""" ;
+    private static final String PROMPT_ENTER_DETAILS = "\nEnter item details: ";
+    private static final String PROMPT_ANY_OTHER_ITEM = "Do you want to enter details of any other item (y/n): ";
+
     public void startManager(String[] args) {
         Scanner scanner = new Scanner(System.in);
         boolean addItem = true;
 
         while (addItem) {
             try {
-                System.out.println("\nPlease provide item details in the format:");
-                System.out.println("\n -name <item name> \n -price <item price> \n -quantity <item quantity> \n -type <item type>");
-
-                System.out.println("\nEnter item details: ");
+                System.out.println(PROMPT_DETAILS);
+                System.out.println(PROMPT_ENTER_DETAILS);
 
                 String input = scanner.nextLine();
                 String[] arguments = input.split(" ");
-                Map<String, String> inputArgs = parseArguments(arguments);
 
-                
+                ArgumentParser parser = new ArgumentParser();
+                Map<String, String> inputArgs = parser.parseArguments(arguments);
+
+
                 ItemValidator validateItem = new ItemValidator(arguments,inputArgs);
                 validateItem.validate();
 
-                String itemName = inputArgs.get("-name");
-                double itemPrice = Double.parseDouble(inputArgs.get("-price"));
-                int itemQuantity = Integer.parseInt(inputArgs.get("-quantity"));
-                String itemType = inputArgs.get("-type");
+                createAndShowItem(inputArgs);
 
-                Item item = new Item(itemName, itemType, itemPrice, itemQuantity);
-                System.out.println(item.showItemValues());
-
-                System.out.print("Do you want to enter details of any other item (y/n): ");
+                System.out.print(PROMPT_ANY_OTHER_ITEM);
                 String userResponse = scanner.next();
                 scanner.nextLine();
 
@@ -44,13 +54,13 @@ public class ItemManager {
         scanner.close();
     }
 
-    private static Map<String, String> parseArguments(String[] args) {
-        Map<String, String> arguments = new HashMap<>();
-        for (int i = 0; i < args.length; i+=2) {
-            if (args[i].startsWith("-") && i + 1 < args.length) {
-                arguments.put(args[i], args[i + 1]);
-            }
-        }
-        return arguments;
+    private void createAndShowItem(Map<String, String> inputArgs) {
+        String itemName = inputArgs.get("-name");
+        double itemPrice = Double.parseDouble(inputArgs.get("-price"));
+        int itemQuantity = Integer.parseInt(inputArgs.get("-quantity"));
+        String itemType = inputArgs.get("-type");
+
+        Item item = new Item(itemName, itemType, itemPrice, itemQuantity);
+        System.out.println(item.showItemValues());
     }
 }

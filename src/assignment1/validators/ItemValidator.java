@@ -1,12 +1,12 @@
-package assignment1;
-import assignment1.Exceptions.InvalidArgument;
+package assignment1.validators;
+import assignment1.exceptions.InvalidArgument;
 import java.util.Map;
 import java.util.Arrays;
 
 public class ItemValidator {
 
-    private String[] arguments;
-    private Map<String, String> inputArgs;
+    final private String[] arguments;
+    final private Map<String, String> inputArgs;
 
     public ItemValidator(String[] arguments, Map<String, String> inputArgs) {
         this.arguments = arguments;
@@ -16,7 +16,7 @@ public class ItemValidator {
     private void validateTypeOfItem(String itemType) {
         String[] validTypeOfItem = { "raw", "manufactured", "imported" };
         if (!Arrays.asList(validTypeOfItem).contains(itemType.toLowerCase()))
-            throw new InvalidArgument("Invalid Item Type , it should be eitherraw, manufactured or imported");
+            throw new InvalidArgument("Invalid Item Type , it should be either raw, manufactured or imported");
     }
 
     private void validateEachOptionHasValidValue(Map<String, String> inputArgs) {
