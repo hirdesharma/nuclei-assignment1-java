@@ -5,7 +5,7 @@ import main.java.assignment1.exceptions.InvalidArgument;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ArgumentParser {
+public class ArgumentParserUtils {
     public static Map<String, String> parseArguments(String[] args) {
         Map<String, String> arguments = new HashMap<>();
         for (int i = 0; i < args.length; i+=2) {

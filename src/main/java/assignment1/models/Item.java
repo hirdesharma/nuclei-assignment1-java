@@ -1,7 +1,7 @@
-package main.java.assignment1;
+package main.java.assignment1.models;
 
 import main.java.assignment1.enums.ItemType;
-import main.java.assignment1.models.TaxCalculator;
+import main.java.assignment1.services.TaxCalculatorService;
 
 public class Item {
     private final String name;
@@ -17,8 +17,8 @@ public class Item {
     }
 
     public String showItemValues() {
-        TaxCalculator taxCalculator = new TaxCalculator();
-        double tax = taxCalculator.calculateTax(type,price);
+        TaxCalculatorService taxCalculatorService = new TaxCalculatorService();
+        double tax = taxCalculatorService.calculateTax(type,price);
         double finalPrice = price + tax;
 
         return """

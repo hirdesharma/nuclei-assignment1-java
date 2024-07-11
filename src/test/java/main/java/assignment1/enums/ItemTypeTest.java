@@ -1,4 +1,4 @@
-import main.java.assignment1.enums.ItemType;
+package main.java.assignment1.enums;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;

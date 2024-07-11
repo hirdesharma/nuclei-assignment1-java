@@ -1,10 +1,7 @@
-import main.java.assignment1.Item;
+package main.java.assignment1.models;
+
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-
-import main.java.assignment1.enums.ItemType;
-import main.java.assignment1.models.TaxCalculator;
-import org.junit.jupiter.api.BeforeEach;
 
 
 class ItemTest {

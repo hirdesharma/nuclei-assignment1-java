@@ -6,12 +6,21 @@ import java.util.Arrays;
 
 public class ItemValidator {
 
-    final private String[] arguments;
-    final private Map<String, String> inputArgs;
+    private String[] arguments;
+    private Map<String, String> inputArgs;
 
-    public ItemValidator(String[] arguments, Map<String, String> inputArgs) {
+    public void setArguments(String[] arguments){
         this.arguments = arguments;
+    }
+    public void setInputArgs(Map<String, String> inputArgs){
         this.inputArgs = inputArgs;
+    }
+
+    public String[] getArguments(){
+        return arguments;
+    }
+    public Map<String, String> setInputArgs(){
+        return inputArgs;
     }
 
     private void validateTypeOfItem(String itemType) {

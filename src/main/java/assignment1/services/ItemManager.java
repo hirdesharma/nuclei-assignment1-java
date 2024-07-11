@@ -1,6 +1,7 @@
-package main.java.assignment1;
+package main.java.assignment1.services;
 
-import main.java.assignment1.utils.ArgumentParser;
+import main.java.assignment1.models.Item;
+import main.java.assignment1.utils.ArgumentParserUtils;
 import main.java.assignment1.validators.ItemValidator;
 
 import java.util.Map;
@@ -8,7 +9,7 @@ import java.util.Scanner;
 
 public class ItemManager {
 
-//   asking user to enter details
+    //   asking user to enter details
     private static final String PROMPT_DETAILS = """
 
         Please provide item details in the format:
@@ -19,7 +20,7 @@ public class ItemManager {
     private static final String PROMPT_ENTER_DETAILS = "\nEnter item details: ";
     private static final String PROMPT_ANY_OTHER_ITEM = "Do you want to enter details of any other item (y/n): ";
 
-    public void startManager(String[] args) {
+    public void startManager() {
         Scanner scanner = new Scanner(System.in);
         boolean addItem = true;
 
@@ -31,11 +32,13 @@ public class ItemManager {
                 String input = scanner.nextLine();
                 String[] arguments = input.split(" ");
 
-                ArgumentParser parser = new ArgumentParser();
+                ArgumentParserUtils parser = new ArgumentParserUtils();
                 Map<String, String> inputArgs = parser.parseArguments(arguments);
 
 
-                ItemValidator validateItem = new ItemValidator(arguments,inputArgs);
+                ItemValidator validateItem = new ItemValidator();
+                validateItem.setArguments(arguments);
+                validateItem.setInputArgs(inputArgs);
                 validateItem.validate();
 
                 createAndShowItem(inputArgs);

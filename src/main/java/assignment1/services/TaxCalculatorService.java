@@ -1,8 +1,8 @@
-package main.java.assignment1.models;
+package main.java.assignment1.services;
 
 import main.java.assignment1.enums.ItemType;
 
-public class TaxCalculator {
+public class TaxCalculatorService {
     private static final double BASE_TAX_RATE = 0.125;
     private static final double MANUFACTURED_SURCHARGE_RATE = 0.02;
     private static final double IMPORT_DUTY_RATE = 0.10;

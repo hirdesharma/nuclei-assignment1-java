@@ -1,4 +1,5 @@
-import main.java.assignment1.validators.ItemValidator;
+package main.java.assignment1.validators;
+
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,8 +18,10 @@ class ItemValidatorTest {
         inputArgs.put("-price", "100.0");
         inputArgs.put("-quantity", "10");
 
-        ItemValidator validator = new ItemValidator(args, inputArgs);
-        assertDoesNotThrow(validator::validate);
+        ItemValidator validateItem = new ItemValidator();
+        validateItem.setArguments(args);
+        validateItem.setInputArgs(inputArgs);
+        assertDoesNotThrow(validateItem::validate);
     }
     @Test
     public void testMissingRequiredArguments() {
@@ -27,8 +30,10 @@ class ItemValidatorTest {
         inputArgs.put("-name", "tomato");
         inputArgs.put("-type", "raw");
 
-        ItemValidator validator = new ItemValidator(args, inputArgs);
-        assertThrows(InvalidArgument.class, validator::validate);
+        ItemValidator validateItem = new ItemValidator();
+        validateItem.setArguments(args);
+        validateItem.setInputArgs(inputArgs);
+        assertThrows(InvalidArgument.class, validateItem::validate);
     }
     @Test
     public void testInvalidItemType() {
@@ -39,8 +44,10 @@ class ItemValidatorTest {
         inputArgs.put("-price", "100.0");
         inputArgs.put("-quantity", "10");
 
-        ItemValidator validator = new ItemValidator(args, inputArgs);
-        assertThrows(InvalidArgument.class, validator::validate);
+        ItemValidator validateItem = new ItemValidator();
+        validateItem.setArguments(args);
+        validateItem.setInputArgs(inputArgs);
+        assertThrows(InvalidArgument.class, validateItem::validate);
     }
     @Test
     public void testAlphabeticalPriceAndQuantityValue() {
@@ -51,7 +58,9 @@ class ItemValidatorTest {
         inputArgs.put("-price", "invalid");
         inputArgs.put("-quantity", "10");
 
-        ItemValidator validator = new ItemValidator(args, inputArgs);
-        assertThrows(InvalidArgument.class, validator::validate);
+        ItemValidator validateItem = new ItemValidator();
+        validateItem.setArguments(args);
+        validateItem.setInputArgs(inputArgs);
+        assertThrows(InvalidArgument.class, validateItem::validate);
     }
 }
