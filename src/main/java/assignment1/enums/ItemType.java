@@ -1,4 +1,4 @@
-package assignment1.enums;
+package main.java.assignment1.enums;
 
 public enum ItemType {
     RAW,

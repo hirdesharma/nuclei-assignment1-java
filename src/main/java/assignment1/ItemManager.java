@@ -1,10 +1,9 @@
-package assignment1;
+package main.java.assignment1;
 
-import assignment1.utils.ArgumentParser;
-import assignment1.validators.ItemValidator;
+import main.java.assignment1.utils.ArgumentParser;
+import main.java.assignment1.validators.ItemValidator;
 
 import java.util.Map;
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class ItemManager {
@@ -12,8 +11,7 @@ public class ItemManager {
 //   asking user to enter details
     private static final String PROMPT_DETAILS = """
 
-        Please provide item details in the format:\
-
+        Please provide item details in the format:
          -name <item name>
          -price <item price>
          -quantity <item quantity>

@@ -1,5 +1,6 @@
-package assignment1.validators;
-import assignment1.exceptions.InvalidArgument;
+package main.java.assignment1.validators;
+import main.java.assignment1.exceptions.InvalidArgument;
+
 import java.util.Map;
 import java.util.Arrays;
 
@@ -40,7 +41,7 @@ public class ItemValidator {
     private void validateCompulsoryArguments(String[] arguments, Map<String, String> inputArgs) {
         if (!arguments[0].equalsIgnoreCase("-name"))
             throw new InvalidArgument("-name option must be the first option !");
-        if (!inputArgs.containsKey("-price"))
+        if (!inputArgs.containsKey("-type"))
             throw new InvalidArgument("-type option is compulsory !");
     }
 
