@@ -1,5 +1,6 @@
-package assignment1;
-import assignment1.Exceptions.InvalidArgument;
+package main.java.assignment1.validators;
+import main.java.assignment1.exceptions.InvalidArgument;
+
 import java.util.Map;
 import java.util.Arrays;
 
@@ -8,15 +9,24 @@ public class ItemValidator {
     private String[] arguments;
     private Map<String, String> inputArgs;
 
-    public ItemValidator(String[] arguments, Map<String, String> inputArgs) {
+    public void setArguments(String[] arguments){
         this.arguments = arguments;
+    }
+    public void setInputArgs(Map<String, String> inputArgs){
         this.inputArgs = inputArgs;
+    }
+
+    public String[] getArguments(){
+        return arguments;
+    }
+    public Map<String, String> setInputArgs(){
+        return inputArgs;
     }
 
     private void validateTypeOfItem(String itemType) {
         String[] validTypeOfItem = { "raw", "manufactured", "imported" };
         if (!Arrays.asList(validTypeOfItem).contains(itemType.toLowerCase()))
-            throw new InvalidArgument("Invalid Item Type , it should be eitherraw, manufactured or imported");
+            throw new InvalidArgument("Invalid Item Type , it should be either raw, manufactured or imported");
     }
 
     private void validateEachOptionHasValidValue(Map<String, String> inputArgs) {
@@ -40,7 +50,7 @@ public class ItemValidator {
     private void validateCompulsoryArguments(String[] arguments, Map<String, String> inputArgs) {
         if (!arguments[0].equalsIgnoreCase("-name"))
             throw new InvalidArgument("-name option must be the first option !");
-        if (!inputArgs.containsKey("-price"))
+        if (!inputArgs.containsKey("-type"))
             throw new InvalidArgument("-type option is compulsory !");
     }
 
