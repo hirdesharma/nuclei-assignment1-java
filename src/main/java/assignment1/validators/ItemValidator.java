@@ -6,27 +6,10 @@ import java.util.Arrays;
 
 public class ItemValidator {
 
-    private String[] arguments;
-    private Map<String, String> inputArgs;
-
-    public void setArguments(String[] arguments){
-        this.arguments = arguments;
-    }
-    public void setInputArgs(Map<String, String> inputArgs){
-        this.inputArgs = inputArgs;
-    }
-
-    public String[] getArguments(){
-        return arguments;
-    }
-    public Map<String, String> setInputArgs(){
-        return inputArgs;
-    }
-
-    private void validateTypeOfItem(String itemType) {
-        String[] validTypeOfItem = { "raw", "manufactured", "imported" };
-        if (!Arrays.asList(validTypeOfItem).contains(itemType.toLowerCase()))
-            throw new InvalidArgument("Invalid Item Type , it should be either raw, manufactured or imported");
+    public void validate(String[] arguments,Map<String, String> inputArgs) {
+        validateNumberOfArguments(inputArgs);
+        validateCompulsoryArguments(arguments, inputArgs);
+        validateEachOptionHasValidValue(inputArgs);
     }
 
     private void validateEachOptionHasValidValue(Map<String, String> inputArgs) {
@@ -46,6 +29,11 @@ public class ItemValidator {
         }
 
     }
+    private void validateTypeOfItem(String itemType) {
+        String[] validTypeOfItem = { "raw", "manufactured", "imported" };
+        if (!Arrays.asList(validTypeOfItem).contains(itemType.toLowerCase()))
+            throw new InvalidArgument("Invalid Item Type , it should be either raw, manufactured or imported");
+    }
 
     private void validateCompulsoryArguments(String[] arguments, Map<String, String> inputArgs) {
         if (!arguments[0].equalsIgnoreCase("-name"))
@@ -57,11 +45,5 @@ public class ItemValidator {
     private void validateNumberOfArguments(Map<String, String> inputArgs) {
         if (inputArgs.size() < 4)
             throw new InvalidArgument("At least 4 commandline arguments needed and -name and -type options are must.");
-    }
-
-    public void validate() {
-        validateNumberOfArguments(inputArgs);
-        validateCompulsoryArguments(arguments, inputArgs);
-        validateEachOptionHasValidValue(inputArgs);
     }
 }

@@ -1,37 +1,34 @@
 package main.java.assignment1.services;
 
 import main.java.assignment1.enums.ItemType;
+import main.java.assignment1.constants.TaxRateConstants;
+import main.java.assignment1.exceptions.InvalidArgument;
 
 public class TaxCalculatorService {
-    private static final double BASE_TAX_RATE = 0.125;
-    private static final double MANUFACTURED_SURCHARGE_RATE = 0.02;
-    private static final double IMPORT_DUTY_RATE = 0.10;
-    private static final double SURCHARGE_LOW = 5;
-    private static final double SURCHARGE_MEDIUM = 10;
-    private static final double SURCHARGE_HIGH_RATE = 0.05;
 
     public double calculateTax(ItemType type, double price) {
+        if(price<0)throw new InvalidArgument("price should be a positive number");
         switch (type) {
             case RAW:
-                return price * BASE_TAX_RATE;
+                return price * TaxRateConstants.BASE_TAX_RATE;
             case MANUFACTURED:
-                return price * BASE_TAX_RATE + (price * (1 + BASE_TAX_RATE)) * MANUFACTURED_SURCHARGE_RATE;
+                return price * TaxRateConstants.BASE_TAX_RATE + (price * (1 + TaxRateConstants.BASE_TAX_RATE)) * TaxRateConstants.MANUFACTURED_SURCHARGE_RATE;
             case IMPORTED:
-                double importDuty = price * IMPORT_DUTY_RATE;
+                double importDuty = price * TaxRateConstants.IMPORT_DUTY_RATE;
                 double surcharge = calculateSurcharge(price + importDuty);
                 return importDuty + surcharge;
             default:
-                throw new IllegalArgumentException("Invalid item type: " + type);
+                throw new InvalidArgument("Invalid item type: " + type);
         }
     }
 
     private double calculateSurcharge(double costAfterTax) {
         if (costAfterTax <= 100) {
-            return SURCHARGE_LOW;
+            return TaxRateConstants.SURCHARGE_LOW;
         } else if (costAfterTax <= 200) {
-            return SURCHARGE_MEDIUM;
+            return TaxRateConstants.SURCHARGE_MEDIUM;
         } else {
-            return costAfterTax * SURCHARGE_HIGH_RATE;
+            return costAfterTax * TaxRateConstants.SURCHARGE_HIGH_RATE;
         }
     }
 }

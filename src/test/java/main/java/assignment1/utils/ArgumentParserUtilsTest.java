@@ -9,11 +9,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 class ArgumentParserUtilsTest {
+    private final ArgumentParserInterface argumentParser = new ArgumentParserUtils();
 
     @Test
     public void testValidValues() {
         String[]args = {"-name","tomato","-type","raw","-price","100","-quantity","10"};
-        Map<String, String> result = ArgumentParserUtils.parseArguments(args);
+        Map<String, String> result = argumentParser.parseArguments(args);
         assertEquals(4, result.size());
         assertEquals("tomato", result.get("-name"));
         assertEquals("raw", result.get("-type"));
@@ -24,20 +25,27 @@ class ArgumentParserUtilsTest {
     public void testMissingValue() {
         String[] args = {"-name"};
         assertThrows(InvalidArgument.class, () -> {
-            ArgumentParserUtils.parseArguments(args);
+            argumentParser.parseArguments(args);
         });
     }
     @Test
     public void testMixedValidAndInvalidArguments() {
         String[] args = {"-name","tomato","type","raw","-price","100","-quantity","10"};
         assertThrows(InvalidArgument.class, () -> {
-            ArgumentParserUtils.parseArguments(args);
+            argumentParser.parseArguments(args);
         });
     }
     @Test
     public void testEmptyArguments() {
         String[] args = {};
-        Map<String, String> result = ArgumentParserUtils.parseArguments(args);
+        Map<String, String> result = argumentParser.parseArguments(args);
         assertTrue(result.isEmpty());
+    }
+    @Test
+    void testParseArgumentsWithNullInput() {
+        String[] args = {null,null};
+        assertThrows(InvalidArgument.class, () -> {
+            argumentParser.parseArguments(args);
+        });
     }
 }

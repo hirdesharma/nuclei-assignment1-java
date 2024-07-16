@@ -1,34 +1,37 @@
 package main.java.assignment1.models;
 
 import main.java.assignment1.enums.ItemType;
-import main.java.assignment1.services.TaxCalculatorService;
 
 public class Item {
-    private final String name;
-    private final ItemType type;
-    private final double price;
-    private final int quantity;
+    private String name;
+    private ItemType type;
+    private double price;
+    private int quantity;
 
-    public Item(String name, String type, double price, int quantity) {
+    public void setName(String name) {
         this.name = name;
+    }
+    public void setType(String type) {
         this.type = ItemType.fromString(type);
+    }
+    public void setPrice(double price) {
         this.price = price;
+    }
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
-    public String showItemValues() {
-        TaxCalculatorService taxCalculatorService = new TaxCalculatorService();
-        double tax = taxCalculatorService.calculateTax(type,price);
-        double finalPrice = price + tax;
-
-        return """
-               Item:
-               Name: %s
-               Type: %s
-               Price: %.2f
-               Quantity: %d
-               Tax: %.2f
-               Final Price: %.2f
-               """.formatted(name, type, price, quantity, tax, finalPrice);
+    public String getName() {
+        return name;
     }
+    public ItemType getType() {
+        return type;
+    }
+    public double getPrice() {
+        return price;
+    }
+    public int getQuantity() {
+        return quantity;
+    }
+
 }

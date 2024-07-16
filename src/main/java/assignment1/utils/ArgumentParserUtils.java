@@ -5,10 +5,12 @@ import main.java.assignment1.exceptions.InvalidArgument;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ArgumentParserUtils {
-    public static Map<String, String> parseArguments(String[] args) {
+public class ArgumentParserUtils implements ArgumentParserInterface {
+
+    public Map<String, String> parseArguments(String[] args){
         Map<String, String> arguments = new HashMap<>();
         for (int i = 0; i < args.length; i+=2) {
+            if(args[i]==null)throw new InvalidArgument("value cannot be null");
             if (args[i].startsWith("-") && i + 1 < args.length) {
                 arguments.put(args[i], args[i + 1]);
             }else if(i + 1 < args.length){
@@ -19,4 +21,8 @@ public class ArgumentParserUtils {
         }
         return arguments;
     }
+}
+
+interface ArgumentParserInterface {
+    Map<String, String> parseArguments(String[] args);
 }

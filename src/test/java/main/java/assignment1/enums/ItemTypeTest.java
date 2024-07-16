@@ -1,6 +1,8 @@
 package main.java.assignment1.enums;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import main.java.assignment1.exceptions.InvalidArgument;
 import org.junit.jupiter.api.Test;
 
 public class ItemTypeTest {
@@ -36,8 +38,15 @@ public class ItemTypeTest {
 
     @Test
     public void testFromStringInvalidType() {
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(InvalidArgument.class, () -> {
             ItemType.fromString("invalid");
+        });
+    }
+
+    @Test
+    public void testFromStringNullItemType(){
+        assertThrows(InvalidArgument.class,()-> {
+            ItemType.fromString(null);
         });
     }
 }

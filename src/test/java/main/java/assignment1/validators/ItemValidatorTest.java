@@ -19,9 +19,9 @@ class ItemValidatorTest {
         inputArgs.put("-quantity", "10");
 
         ItemValidator validateItem = new ItemValidator();
-        validateItem.setArguments(args);
-        validateItem.setInputArgs(inputArgs);
-        assertDoesNotThrow(validateItem::validate);
+        assertDoesNotThrow( ()-> {
+            validateItem.validate(args, inputArgs);
+        });
     }
     @Test
     public void testMissingRequiredArguments() {
@@ -31,9 +31,9 @@ class ItemValidatorTest {
         inputArgs.put("-type", "raw");
 
         ItemValidator validateItem = new ItemValidator();
-        validateItem.setArguments(args);
-        validateItem.setInputArgs(inputArgs);
-        assertThrows(InvalidArgument.class, validateItem::validate);
+        assertThrows(InvalidArgument.class,  ()-> {
+            validateItem.validate(args, inputArgs);
+        });
     }
     @Test
     public void testInvalidItemType() {
@@ -45,9 +45,9 @@ class ItemValidatorTest {
         inputArgs.put("-quantity", "10");
 
         ItemValidator validateItem = new ItemValidator();
-        validateItem.setArguments(args);
-        validateItem.setInputArgs(inputArgs);
-        assertThrows(InvalidArgument.class, validateItem::validate);
+        assertThrows(InvalidArgument.class, ()-> {
+            validateItem.validate(args, inputArgs);
+        });
     }
     @Test
     public void testAlphabeticalPriceAndQuantityValue() {
@@ -59,8 +59,8 @@ class ItemValidatorTest {
         inputArgs.put("-quantity", "10");
 
         ItemValidator validateItem = new ItemValidator();
-        validateItem.setArguments(args);
-        validateItem.setInputArgs(inputArgs);
-        assertThrows(InvalidArgument.class, validateItem::validate);
+        assertThrows(InvalidArgument.class,  ()-> {
+            validateItem.validate(args, inputArgs);
+        });
     }
 }
