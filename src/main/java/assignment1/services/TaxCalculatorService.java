@@ -6,8 +6,8 @@ import main.java.assignment1.exceptions.InvalidArgument;
 
 public class TaxCalculatorService {
 
-    public double calculateTax(ItemType type, double price) {
-        if(price<0)throw new InvalidArgument("price should be a positive number");
+    public double calculateTax(ItemType type, Double price) {
+        if(price == null || price<0)throw new InvalidArgument("price should be a positive number");
         switch (type) {
             case RAW:
                 return price * TaxRateConstants.BASE_TAX_RATE;

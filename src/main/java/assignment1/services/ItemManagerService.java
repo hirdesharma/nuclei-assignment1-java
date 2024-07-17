@@ -29,7 +29,9 @@
                     String[] arguments = userInteractionService.promptForUserInput();
 
                     Map<String, String> inputArgs =  argumentParser.parseArguments(arguments);
-                    itemValidator.validate(arguments,inputArgs);
+                    itemValidator.setInputArgs(inputArgs);
+                    itemValidator.setArguments(arguments);
+                    itemValidator.validate();
                     createAndShowItemService.createAndShowItem(inputArgs);
 
                     addItem = userInteractionService.promptForAnotherItemInput();

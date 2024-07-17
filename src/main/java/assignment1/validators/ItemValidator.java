@@ -6,21 +6,33 @@ import java.util.Arrays;
 
 public class ItemValidator {
 
-    public void validate(String[] arguments,Map<String, String> inputArgs) {
-        validateNumberOfArguments(inputArgs);
-        validateCompulsoryArguments(arguments, inputArgs);
-        validateEachOptionHasValidValue(inputArgs);
+    private String[] arguments;
+    private Map<String, String> inputArgs;
+
+    public void setArguments(String[] arguments){
+        this.arguments = arguments;
+    }
+    public void setInputArgs(Map<String, String> inputArgs){
+        this.inputArgs = inputArgs;
     }
 
-    private void validateEachOptionHasValidValue(Map<String, String> inputArgs) {
+    public void validate() {
+        validateNumberOfArguments(inputArgs);
         validateTypeOfItem(inputArgs.get("-type"));
+        validateCompulsoryArguments(arguments, inputArgs);
+        validatePriceHasValidValue(inputArgs);
+        validateQuantityHasValidValue(inputArgs);
+    }
 
+    private void validatePriceHasValidValue(Map<String, String> inputArgs) {
         try {
             if (inputArgs.containsKey("-price"))
                 Double.parseDouble(inputArgs.get("-price"));
         } catch (NumberFormatException e) {
             throw new InvalidArgument("Invalid value : Item Price is not an Integer/Double");
         }
+    }
+    private void validateQuantityHasValidValue(Map<String, String> inputArgs) {
         try {
             if (inputArgs.containsKey("-quantity"))
                 Integer.parseInt(inputArgs.get("-quantity"));
