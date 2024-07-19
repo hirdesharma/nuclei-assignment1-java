@@ -4,18 +4,20 @@ import main.java.assignment1.exceptions.InvalidArgument;
 import java.util.Map;
 import java.util.Arrays;
 
-public class ItemValidator {
+public class ItemValidator implements ItemValidatorInterface{
 
     private String[] arguments;
     private Map<String, String> inputArgs;
 
+    @Override
     public void setArguments(String[] arguments){
         this.arguments = arguments;
     }
+    @Override
     public void setInputArgs(Map<String, String> inputArgs){
         this.inputArgs = inputArgs;
     }
-
+    @Override
     public void validate() {
         validateNumberOfArguments(inputArgs);
         validateTypeOfItem(inputArgs.get("-type"));

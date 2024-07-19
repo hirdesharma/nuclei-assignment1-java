@@ -5,8 +5,9 @@ import main.java.assignment1.exceptions.InvalidArgument;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ArgumentParserUtils implements ArgumentParserInterface {
+public class ArgumentParserUtils implements ArgumentParserUtilsInterface {
 
+    @Override
     public Map<String, String> parseArguments(String[] args){
         Map<String, String> arguments = new HashMap<>();
         for (int i = 0; i < args.length; i+=2) {
@@ -23,6 +24,3 @@ public class ArgumentParserUtils implements ArgumentParserInterface {
     }
 }
 
-interface ArgumentParserInterface {
-    Map<String, String> parseArguments(String[] args);
-}

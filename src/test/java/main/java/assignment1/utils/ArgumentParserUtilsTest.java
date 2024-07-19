@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 class ArgumentParserUtilsTest {
-    private final ArgumentParserInterface argumentParser = new ArgumentParserUtils();
+    private final ArgumentParserUtilsInterface argumentParser = new ArgumentParserUtils();
 
     @Test
     public void testValidValues() {

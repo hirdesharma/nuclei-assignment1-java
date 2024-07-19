@@ -3,15 +3,17 @@ package main.java.assignment1.services;
 import main.java.assignment1.models.Item;
 
 import java.util.Map;
+import main.java.assignment1.models.ItemInterface;
 
-public class CreateAndShowItemService {
+public class CreateAndShowItemService implements CreateAndShowItemServiceInterface{
+    @Override
     public void createAndShowItem(Map<String, String> inputArgs) {
         String itemName = inputArgs.get("-name");
         double itemPrice = Double.parseDouble(inputArgs.get("-price"));
         int itemQuantity = Integer.parseInt(inputArgs.get("-quantity"));
         String itemType = inputArgs.get("-type");
 
-        Item item = new Item();
+        ItemInterface item = new Item();
         item.setName(itemName);
         item.setPrice(itemPrice);
         item.setType(itemType);
