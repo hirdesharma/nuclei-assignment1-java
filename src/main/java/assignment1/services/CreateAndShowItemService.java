@@ -3,7 +3,6 @@ package main.java.assignment1.services;
 import main.java.assignment1.models.Item;
 
 import java.util.Map;
-import main.java.assignment1.models.ItemInterface;
 
 public class CreateAndShowItemService implements CreateAndShowItemServiceInterface{
     @Override

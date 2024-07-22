@@ -1,8 +1,6 @@
 package main.java.assignment1.services;
 
-import main.java.assignment1.models.ItemInterface;
-
-public class ItemValuesDisplayService {
+public class ItemValuesDisplayService implements ItemValuesDisplayServiceInterface{
 
   private final TaxCalculatorService taxCalculatorService;
   private final ItemInterface item;
@@ -12,6 +10,7 @@ public class ItemValuesDisplayService {
     this.item = item;
   }
 
+  @Override
   public String showItemValues() {
 
     double tax = taxCalculatorService.calculateTax(item.getType(), item.getPrice());

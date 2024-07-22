@@ -4,8 +4,9 @@ import main.java.assignment1.enums.ItemType;
 import main.java.assignment1.constants.TaxRateConstants;
 import main.java.assignment1.exceptions.InvalidArgument;
 
-public class TaxCalculatorService{
+public class TaxCalculatorService implements TaxCalculatorServiceInterface{
 
+    @Override
     public double calculateTax(ItemType type, Double price) {
         if(price == null || price<0)throw new InvalidArgument("price should be a positive number");
         switch (type) {

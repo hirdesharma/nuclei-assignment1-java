@@ -3,16 +3,16 @@ package main.java.assignment1.services;
 import java.util.Map;
 import main.java.assignment1.exceptions.InvalidArgument;
 import main.java.assignment1.utils.ArgumentParserUtilsInterface;
-import main.java.assignment1.validators.ItemValidatorInterface;
+import main.java.assignment1.validators.ItemValidator;
 
-public class ItemManagerService {
+public class ItemManagerService implements ItemManagerServiceInterface {
   private final ArgumentParserUtilsInterface argumentParser;
-  private final ItemValidatorInterface itemValidator;
+  private final ItemValidator itemValidator;
   private final UserInteractionService userInteractionService;
   private final CreateAndShowItemServiceInterface createAndShowItemService;
 
   public ItemManagerService(ArgumentParserUtilsInterface argumentParser,
-                            ItemValidatorInterface itemValidator,
+                            ItemValidator itemValidator,
                             UserInteractionService userInteractionService,
                             CreateAndShowItemServiceInterface createAndShowItemService) {
     this.argumentParser = argumentParser;
@@ -21,6 +21,7 @@ public class ItemManagerService {
     this.createAndShowItemService = createAndShowItemService;
   }
 
+  @Override
   public void startManager() {
     boolean addItem = true;
 
