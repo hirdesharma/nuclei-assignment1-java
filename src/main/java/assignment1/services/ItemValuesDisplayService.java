@@ -1,11 +1,12 @@
 package main.java.assignment1.services;
+import main.java.assignment1.models.Item;
 
 public class ItemValuesDisplayService implements ItemValuesDisplayServiceInterface{
 
   private final TaxCalculatorService taxCalculatorService;
-  private final ItemInterface item;
+  Item item;
 
-  public ItemValuesDisplayService(TaxCalculatorService taxCalculatorService, ItemInterface item) {
+  public ItemValuesDisplayService(TaxCalculatorService taxCalculatorService, Item item) {
     this.taxCalculatorService = taxCalculatorService;
     this.item = item;
   }

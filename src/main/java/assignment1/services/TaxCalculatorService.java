@@ -4,26 +4,39 @@ import main.java.assignment1.enums.ItemType;
 import main.java.assignment1.constants.TaxRateConstants;
 import main.java.assignment1.exceptions.InvalidArgument;
 
-public class TaxCalculatorService implements TaxCalculatorServiceInterface{
+import java.util.HashMap;
+import java.util.Map;
+import main.java.assignment1.taxCalculation.ImportedItemTaxCalculationStrategy;
+import main.java.assignment1.taxCalculation.ManufacturedItemTaxCalculationStrategy;
+import main.java.assignment1.taxCalculation.RawItemTaxCalculationStrategy;
+import main.java.assignment1.taxCalculation.TaxCalculationInterface;
+
+public class TaxCalculatorService implements TaxCalculatorServiceInterface {
+
+    private final Map<ItemType, TaxCalculationInterface> taxStrategyMap;
+
+    public TaxCalculatorService() {
+        taxStrategyMap = new HashMap<>();
+        taxStrategyMap.put(ItemType.RAW, new RawItemTaxCalculationStrategy());
+        taxStrategyMap.put(ItemType.MANUFACTURED, new ManufacturedItemTaxCalculationStrategy());
+        taxStrategyMap.put(ItemType.IMPORTED, new ImportedItemTaxCalculationStrategy());
+    }
 
     @Override
     public double calculateTax(ItemType type, Double price) {
-        if(price == null || price<0)throw new InvalidArgument("price should be a positive number");
-        switch (type) {
-            case RAW:
-                return price * TaxRateConstants.BASE_TAX_RATE;
-            case MANUFACTURED:
-                return price * TaxRateConstants.BASE_TAX_RATE + (price * (1 + TaxRateConstants.BASE_TAX_RATE)) * TaxRateConstants.MANUFACTURED_SURCHARGE_RATE;
-            case IMPORTED:
-                double importDuty = price * TaxRateConstants.IMPORT_DUTY_RATE;
-                double surcharge = calculateSurcharge(price + importDuty);
-                return importDuty + surcharge;
-            default:
-                throw new InvalidArgument("Invalid item type: " + type);
+        if (price == null || price < 0) {
+            throw new InvalidArgument("Price should be a positive number");
         }
+
+        TaxCalculationInterface strategy = taxStrategyMap.get(type);
+        if (strategy == null) {
+            throw new InvalidArgument("Invalid item type: " + type);
+        }
+
+        return strategy.calculate(price);
     }
 
-    private double calculateSurcharge(double costAfterTax) {
+    public static double calculateSurcharge(double costAfterTax) {
         if (costAfterTax <= 100) {
             return TaxRateConstants.SURCHARGE_LOW;
         } else if (costAfterTax <= 200) {
