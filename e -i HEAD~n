@@ -1,0 +1,98 @@
+[33mcommit df88be977d49bb46ebdc51b4728796ee9ca242a0[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mjava/io-code[m[33m, [m[1;31morigin/java/io-code[m[33m)[m
+Author: Hirdesh Sharma <121444844+hirdesharma@users.noreply.github.com>
+Date:   Wed Jul 17 12:23:33 2024 +0530
+
+    Add some edge test cases
+
+[33mcommit d8ff17a10a8afa92e6692797c06f1e9dbf4b384f[m
+Author: Hirdesh Sharma <121444844+hirdesharma@users.noreply.github.com>
+Date:   Tue Jul 16 14:31:27 2024 +0530
+
+    Refactor classes following SOLID prinicip
+
+[33mcommit 737105aea1883bfe628299b987f77fd9fefc5cd3[m[33m ([m[1;32mrefactor/better-naming-conventions/organised-file-structure[m[33m)[m
+Merge: 3b24300 1bf490e
+Author: Sanketh Kini <kinisanketh@gmail.com>
+Date:   Fri Jul 12 14:56:10 2024 +0530
+
+    Merge pull request #7 from hirdesharma/refactor/better-naming-conventions/organised-file-structure
+    
+    Refactor/better naming conventions/organised file structure/add unit test cases
+
+[33mcommit 1bf490e4ba7dc3486a813b81f40224978f3114e5[m[33m ([m[1;31morigin/refactor/better-naming-conventions/organised-file-structure[m[33m)[m
+Author: Hirdesh Sharma <121444844+hirdesharma@users.noreply.github.com>
+Date:   Fri Jul 12 03:02:01 2024 +0530
+
+    created getter and setter and improve file structure
+    
+    -created getter and setters in ItemValidatorTest. -moved all test files in their saperate packages same as their classes. -created a services package for services like ItemManager and TaxCalculator
+
+[33mcommit c1820528b2b4b6fcfa9634832486cc18fd171462[m
+Author: Hirdesh Sharma <121444844+hirdesharma@users.noreply.github.com>
+Date:   Thu Jul 11 14:09:01 2024 +0530
+
+    Add unit test cases for classes
+    
+     - Included tests for ItemType enum to ensure correct type conversion and handling. - Developed tests for ItemValidator to check validation of input arguments. - Created tests for Item class to validate item creation and tax calculation. - Added tests for ArgumentParser to ensure correct parsing and handling of command-line arguments.
+
+[33mcommit 581baecd981a98c8e38f43fefe453b620bf56c8a[m
+Author: Hirdesh Sharma <121444844+hirdesharma@users.noreply.github.com>
+Date:   Thu Jul 11 00:10:26 2024 +0530
+
+    Refactor: Improve Java naming conventions and file structure
+    
+    Renamed classes, methods, and variables to follow standard Java naming conventions.
+    Organized classes into appropriate packages for better modularity and readability.
+    Utilized enums and text blocks for cleaner and more maintainable code.
+    Updated the TaxCalculator class to be a utility class and moved it to the utils package.
+    Enhanced the toString method in the Item class to use a text block for better readability.
+
+[33mcommit 3b24300916d1626232010abba2b47de5664c51f4[m
+Author: Hirdesh Sharma <121444844+hirdesharma@users.noreply.github.com>
+Date:   Mon Jul 8 12:54:30 2024 +0530
+
+    new branch for user io
+
+[33mcommit 179fc98b3d5ad7d3bd116e1bd392a2d00a2d08b5[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Merge: 9194d83 29f2149
+Author: Hirdesh Sharma <121444844+hirdesharma@users.noreply.github.com>
+Date:   Mon Jul 8 11:24:38 2024 +0530
+
+    Merge pull request #2 from hirdesharma/revert-1-java/item-io-string-manipulation/prototype1
+    
+    Initial java Item io
+
+[33mcommit 29f2149e6a531f03aa532f05a6accb65ca1a8463[m[33m ([m[1;31morigin/revert-1-java/item-io-string-manipulation/prototype1[m[33m)[m
+Author: Hirdesh Sharma <121444844+hirdesharma@users.noreply.github.com>
+Date:   Mon Jul 8 10:07:17 2024 +0530
+
+    Revert "Initial java Item io"
+
+[33mcommit 9194d832bdcbe991f78661b8fdc36eebdeb66164[m
+Merge: 2d0e4d7 c5b6704
+Author: Hirdesh Sharma <121444844+hirdesharma@users.noreply.github.com>
+Date:   Mon Jul 8 09:51:19 2024 +0530
+
+    Merge pull request #1 from hirdesharma/java/item-io-string-manipulation/prototype1
+    
+    Initial java Item io
+
+[33mcommit 2d0e4d72ac2fc3bc01f46c106a4eeb5cc2f2d7d4[m
+Author: Hirdesh Sharma <121444844+hirdesharma@users.noreply.github.com>
+Date:   Mon Jul 8 09:29:22 2024 +0530
+
+    readme changes
+
+[33mcommit c5b6704634636eb52dc6fd8851dd021e59a9f8bb[m[33m ([m[1;31morigin/java/item-io-string-manipulation/prototype1[m[33m)[m
+Author: Hirdesh Sharma <121444844+hirdesharma@users.noreply.github.com>
+Date:   Mon Jul 8 00:49:36 2024 +0530
+
+    Initial java Item io
+    
+    added main.java as main file , ItemManager.java for taking input from user and asking in loop for other items , Item.java for calculation of tax and final price also from giving the final result to user in command line , ItemValidator.java for error handling and validating the data type of inputs provided by the user , InvalidArguments.java for throwing error message it is used in Itemvalidator.java for throwing error in case of an error
+
+[33mcommit 36409e1cf2bdabdcd1a52e96323843d611e5c3f7[m
+Author: Hirdesh Sharma <121444844+hirdesharma@users.noreply.github.com>
+Date:   Fri Jul 5 15:25:51 2024 +0530
+
+    Initial commit
